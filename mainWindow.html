@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Information System</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="">
+  <script src="node_modules/pouchdb/dist/pouchdb.min.js"></script>
+</head>
+<body>
+  <style>
+    header{
+      background-color: #ee6e73;
+      text-align: center;
+      color: white;
+      padding-top: 12px;
+      margin: 0 auto;
+      min-height: 60px;
+    }
+
+    form{
+      padding: 5px;
+    }
+  </style>
+  <header>
+    <h3>Student Information System</h3>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+      <form>
+      </form>
+      </div>
+    </div>
+  </div>
+  <ul></ul>
+
+  <script>
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+    const ul = document.querySelector('ul');
+    const form = document.querySelector('form');
+
+    //add addStudent
+    ipcRenderer.on('item:addStudent', function(e, item){
+      console.log("Student: ", item);
+      // Insert in database 
+      db.put({
+        _id: '5',
+        title: item,
+        completed: false
+      });
+
+    });
+
+    //add item
+    ipcRenderer.on('item:add', function(e, item){
+      
+      console.log("Add Item: ", item);
+      
+      // Insert in database 
+      db.put({
+        _id: '4',
+        title: item,
+        completed: false
+      });
+
+      ul.className = 'collection';
+      const li = document.createElement('li');
+      li.className = 'collection-item';
+      const itemText = document.createTextNode(item);
+      li.appendChild(itemText);
+      ul.appendChild(li);
+      // console.log(ul.appendChild(li));
+    });
+
+    //clear item
+    ipcRenderer.on('item:clear', function(){
+      ul.className = '';
+      ul.innerHTML = '';
+    });
+    ul.addEventListener('dblclick', removeItem);
+    function removeItem(e){
+      event.target.remove();
+      if(ul.children.length == 0){
+        ul.className = '';
+      }
+    }
+  </script>
+   <script src="script.js"></script>
+</body>
+</html>
