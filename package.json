@@ -1,0 +1,23 @@
+{
+  "name": "studentinfo",
+  "version": "1.0.0",
+  "description": "Student Information System",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package-linux": "electron-packager . --overwrite --platform=linux --arch=x64 --icon=images/icon.png --prune=true --out=release-builds"
+  },
+  "repository": {
+    "type": "git",
+    "url": "HimanshuBCS"
+  },
+  "author": "Himanshu Pandey",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^1.7.6",
+    "pouchdb": "^6.4.1"
+  },
+  "devDependencies": {
+    "electron-packager": "^9.0.1"
+  }
+}
