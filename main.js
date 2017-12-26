@@ -64,18 +64,18 @@ ipcMain.on('item:addStudent', function(e, item){
 const mainMenuTemplate =  [
   // Each object is a dropdown
   {
-    label: 'File',
+    label: 'Student System',
     submenu:[
       {
-        label:'Add Item',
+        label:'Add Students',
         click(){
           createAddWindow();
         }
       },
       {
-        label:'Clear Items',
+        label:'Delete Students',
         click(){
-          mainWindow.webContents.send('item:clear');
+          mainWindow.webContents.send('item: DeleteStudent');
         }
       },
       {

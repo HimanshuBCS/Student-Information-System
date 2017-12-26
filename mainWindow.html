@@ -35,8 +35,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-      <form>
-      </form>
+       <ul></ul>
       </div>
     </div>
   </div>
@@ -46,53 +45,49 @@
     const electron = require('electron');
     const {ipcRenderer} = electron;
     const ul = document.querySelector('ul');
-    const form = document.querySelector('form');
 
-    //add addStudent
-    ipcRenderer.on('item:addStudent', function(e, item){
-      console.log("Student: ", item);
-      // Insert in database 
-      db.put({
-        _id: '5',
-        title: item,
-        completed: false
-      });
+    //Add Student
+    ipcRenderer.on('item:addStudent', function(e,item){
 
-    });
-
-    //add item
-    ipcRenderer.on('item:add', function(e, item){
-      
-      console.log("Add Item: ", item);
-      
-      // Insert in database 
-      db.put({
-        _id: '4',
-        title: item,
-        completed: false
-      });
-
-      ul.className = 'collection';
       const li = document.createElement('li');
-      li.className = 'collection-item';
-      const itemText = document.createTextNode(item);
+      let itemText = document.createTextNode(item["FirstName"]);
       li.appendChild(itemText);
       ul.appendChild(li);
-      // console.log(ul.appendChild(li));
+
+      itemText = document.createTextNode(item["LastName"]);
+      li.appendChild(itemText);
+      ul.appendChild(li);
+      
+      itemText = document.createTextNode(item["Email"]);
+      li.appendChild(itemText);
+      ul.appendChild(li);
+    
+      itemText = document.createTextNode(item["Password"]);
+      li.appendChild(itemText);
+      ul.appendChild(li);
+    
+      itemText = document.createTextNode(item["Address"]);
+      li.appendChild(itemText);
+      ul.appendChild(li);
+
+      itemText = document.createTextNode(item["City"]);
+      li.appendChild(itemText);
+      ul.appendChild(li);
+
+      itemText = document.createTextNode(item["State"]);
+      li.appendChild(itemText);
+      ul.appendChild(li);
+
+      itemText = document.createTextNode(item["Zip"]);
+      li.appendChild(itemText);
+      ul.appendChild(li);
     });
 
-    //clear item
-    ipcRenderer.on('item:clear', function(){
-      ul.className = '';
+    //Delete Student
+    ipcRenderer.on('item: DeleteStudent', function(){
       ul.innerHTML = '';
     });
-    ul.addEventListener('dblclick', removeItem);
-    function removeItem(e){
-      event.target.remove();
-      if(ul.children.length == 0){
-        ul.className = '';
-      }
-    }
+
   </script>
    <script src="script.js"></script>
 </body>
