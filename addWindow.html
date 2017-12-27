@@ -42,29 +42,32 @@
             <input type="password" class="form-control" id="inputPassword" placeholder="Password">
           </div>
         </div>
-        <div class="form-group">
-          <label>Address</label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main Street">
-        </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>City</label>
             <input type="text" class="form-control" id="inputCity" >
           </div>
           <div class="form-group col-md-4">
-            <label>State</label>
-            <select id="inputState" class="form-control">
+            <label>Course</label>
+            <select id="inputCourse" class="form-control">
               <option selected>Choose...</option>
-                <option value="delhi" selected>Delhi</option>
-                <option value="bengaluru">Bengaluru</option>
-                <option value="mumbai">Mumbai</option>
-                <option value="noida">Noida</option>
+                <option value="bsc" selected>B.Sc.</option>
+                <option value="ba">B.A.</option>
+                <option value="mca">MCA</option>
+                <option value="msc">M.Sc.</option>
+                <option value="ma">M.A.</option>
+                <option value="btech">B.Tech.</option>
+                <option value="phd">PhD</option>
             </select>
           </div>
           <div class="form-group col-md-2">
             <label>Zip</label>
             <input type="text" class="form-control" id="inputZip">
           </div>
+        </div>
+        <div class="form-group">
+          <label>Address</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main Street">
         </div>
         <div class="form-group">
           <div class="form-check">
@@ -88,10 +91,10 @@
       const Password = document.querySelector('#inputPassword').value;
       const Address = document.querySelector('#inputAddress').value;
       const City = document.querySelector('#inputCity').value;
-      const State = document.querySelector('#inputState').value;
+      const Course = document.querySelector('#inputCourse').value;
       const Zip = document.querySelector('#inputZip').value;
 
-      ipcRenderer.send('item:addStudent', {FirstName, LastName, Email, Password, Address, City, State, Zip});
+      ipcRenderer.send('item:addStudent', {FirstName, LastName, Email, Password, Address, City, Course, Zip});
     }
   </script>
 </body>
