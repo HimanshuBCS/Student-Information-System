@@ -20,6 +20,7 @@
     p{
       text-align: center;
       padding: 3px;
+      font-size: 19px;
     }
 
     form{
@@ -30,57 +31,98 @@
     <h3>Student Information System</h3>
   </header>
   <section>
-    <p>Student information system for add, view, delete and update student. </p>
+    <p style="color: blue">Student information system for add, view, delete and update student. </p>
   </section>
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-       <ul></ul>
+
+        <form id="main-header">
+          <div class="container">
+            <h1></h1>
+          </div>
+        </form>
+
       </div>
     </div>
   </div>
-  <ul></ul>
 
   <script>
     const electron = require('electron');
     const {ipcRenderer} = electron;
-    const ul = document.querySelector('ul');
 
     //Add Student
     ipcRenderer.on('item:addStudent', function(e,item){
 
-      const li = document.createElement('li');
-      let itemText = document.createTextNode(item["FirstName"]);
-      li.appendChild(itemText);
-      ul.appendChild(li);
+      // Insert in database 
+      db.put(item);
 
-      itemText = document.createTextNode(item["LastName"]);
-      li.appendChild(itemText);
-      ul.appendChild(li);
+      var newDiv = document.createElement('div');
+      var newDivText = document.createTextNode(item["FirstName"]);
+      newDiv.appendChild(newDivText);
+
+      var form = document.querySelector('form .container');
+      var h2 = document.querySelector('form h1');
+      form.insertBefore(newDiv, h2);
+
+      var newDivText = document.createTextNode(item["LastName"]);
+      newDiv.appendChild(newDivText);
+      form.insertBefore(newDiv, h2);
       
-      itemText = document.createTextNode(item["Email"]);
-      li.appendChild(itemText);
-      ul.appendChild(li);
+
+
+
+      var newDiv = document.createElement('div');
+      var newDivText = document.createTextNode(item["Email"]);
+      newDiv.appendChild(newDivText);
+
+      var form = document.querySelector('form .container');
+      var h2 = document.querySelector('form h1');
+      form.insertBefore(newDiv, h2);
+
+
+
+      var newDiv = document.createElement('div');
+      var newDivText = document.createTextNode(item["Password"]);
+      newDiv.appendChild(newDivText);
+
+      var form = document.querySelector('form .container');
+      var h2 = document.querySelector('form h1');
+      form.insertBefore(newDiv, h2);
+
     
-      itemText = document.createTextNode(item["Password"]);
-      li.appendChild(itemText);
-      ul.appendChild(li);
-    
-      itemText = document.createTextNode(item["Address"]);
-      li.appendChild(itemText);
-      ul.appendChild(li);
+      var newDiv = document.createElement('div');
+      var newDivText = document.createTextNode(item["Address"]);
+      newDiv.appendChild(newDivText);
 
-      itemText = document.createTextNode(item["City"]);
-      li.appendChild(itemText);
-      ul.appendChild(li);
+      var form = document.querySelector('form .container');
+      var h2 = document.querySelector('form h1');
+      form.insertBefore(newDiv, h2);
 
-      itemText = document.createTextNode(item["Course"]);
-      li.appendChild(itemText);
-      ul.appendChild(li);
 
-      itemText = document.createTextNode(item["Zip"]);
-      li.appendChild(itemText);
-      ul.appendChild(li);
+      var newDiv = document.createElement('div');
+      var newDivText = document.createTextNode(item["City"]);
+      newDiv.appendChild(newDivText);
+
+      var form = document.querySelector('form .container');
+      var h2 = document.querySelector('form h1');
+      form.insertBefore(newDiv, h2);
+
+      var newDiv = document.createElement('div');
+      var newDivText = document.createTextNode(item["Course"]);
+      newDiv.appendChild(newDivText);
+
+      var form = document.querySelector('form .container');
+      var h2 = document.querySelector('form h1');
+      form.insertBefore(newDiv, h2);
+
+      var newDiv = document.createElement('div');
+      var newDivText = document.createTextNode(item["Zip"]);
+      newDiv.appendChild(newDivText);
+
+      var form = document.querySelector('form .container');
+      var h2 = document.querySelector('form h1');
+      form.insertBefore(newDiv, h2);
     });
 
     //Delete Student
@@ -89,6 +131,6 @@
     });
 
   </script>
-   <script src="script.js"></script>
+   <script src="db.js"></script>
 </body>
 </html>
