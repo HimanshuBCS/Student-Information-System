@@ -68,9 +68,6 @@
       var newDivText = document.createTextNode(item["LastName"]);
       newDiv.appendChild(newDivText);
       form.insertBefore(newDiv, h2);
-      
-
-
 
       var newDiv = document.createElement('div');
       var newDivText = document.createTextNode(item["Email"]);
@@ -127,7 +124,7 @@
 
     //Delete Student
     ipcRenderer.on('item: DeleteStudent', function(){
-      ul.innerHTML = '';
+      newDiv.innerHTML = '';
     });
 
   </script>
