@@ -55,7 +55,17 @@
     ipcRenderer.on('item:addStudent', function(e,item){
 
       // Insert in database 
-      db.put(item);
+        var addStudentInfo = {
+          _id: new Date().toISOString(),
+          title: item,
+          completed: false
+        };
+
+        db.put(addStudentInfo, function callback(err, result) {
+          if (!err) {
+            console.log('Successfully posted a Student!');
+          }
+        });
 
       var newDiv = document.createElement('div');
       var newDivText = document.createTextNode(item["FirstName"]);
