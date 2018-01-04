@@ -67,6 +67,15 @@
           }
         });
 
+       // Show the current list of todos by reading them from the database
+     
+        db.allDocs({include_docs: true, descending: true}).then(function(doc) {
+          redrawTodosUI(doc.rows);
+        }).catch(function (err) {
+          console.log(err);
+        });
+
+
       var newDiv = document.createElement('div');
       var newDivText = document.createTextNode(item["FirstName"]);
       newDiv.appendChild(newDivText);
