@@ -94,7 +94,7 @@
       const Course = document.querySelector('#inputCourse').value;
       const Zip = document.querySelector('#inputZip').value;
 
-      ipcRenderer.send('item:addStudent', {FirstName, LastName, Email, Password, Address, City, Course, Zip});
+      ipcRenderer.send('item:addStudent', [{"First Name": FirstName, "Last Name": LastName, "Email": Email, "Password": Password, "Address": Address, "City": City, "Course": Course, "Zip": Zip}]);
     }
   </script>
 </body>
