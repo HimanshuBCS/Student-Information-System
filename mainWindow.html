@@ -68,6 +68,21 @@
            </tbody>
          </table>
       </div> -->
+      <table class="table" id="studnet_table">
+        <tr>
+          <th>Address</th>
+          <th>City</th>
+          <th>Course</th>
+          <th>Email</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Password</th>
+          <th>Zip</th>
+        </tr>
+      </table>
+
+
+
     </div>
     <div id="showData"></div>
   </div>
@@ -78,7 +93,7 @@
 
     //Add Student
     ipcRenderer.on('item:addStudent', function(e,item){
-
+      console.log(item["FirstName"])
       // Insert in database 
         var addStudentInfo = {
           _id: new Date().toISOString(),
@@ -100,7 +115,31 @@
         //   console.log(err);
         // });
 
+      var student_info = '';
+      for (var i = 0; i < item.length; i++) {
+
+        console.log(item["Address"]);
+        student_info += '<tr>';
+        student_info += '<td>'+item["Address"]+'</td>';
+        student_info += '<td>'+item["City"]+'</td>';
+        student_info += '<td>'+item["Course"]+'</td>';
+        student_info += '<td>'+item["Email"]+'</td>';
+        student_info += '<td>'+item["FirstName"]+'</td>'
+        student_info += '<td>'+item["LastName"]+'</td>'
+        student_info += '<td>'+item["Password"]+'</td>'
+        student_info += '<td>'+item["Zip"]+'</td>'
+        student_info += '</tr';
+      }
+      console.log(student_info);
+
+      document.getElementById("studnet_table").appendChild(student_info);
+
+
+
+
+
       var col = [];
+      //Push table header in col array
       for (var i = 0; i < item.length; i++) {
           for (var key in item[i]) {
               if (col.indexOf(key) === -1) {
@@ -111,7 +150,6 @@
 
       var table = document.createElement("table");
       var tr = table.insertRow(-1); 
-
       for (var i = 0; i < col.length; i++) {
           var th = document.createElement("th"); 
           th.innerHTML = col[i];
@@ -133,6 +171,8 @@
       var divContainer = document.getElementById("showData");
       divContainer.innerHTML = "";
       divContainer.appendChild(table);
+
+
 
 
       // var newDiv = document.createElement('div');
